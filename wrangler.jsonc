@@ -3,5 +3,12 @@
   "name": "cloudflare-edge-tts",
   "main": "src/index.ts",
   "compatibility_date": "2026-04-10",
-  "workers_dev": true
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  "upload_source_maps": true,
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
 }

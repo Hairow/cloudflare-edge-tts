@@ -58,13 +58,13 @@ Validation and error behavior:
 Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 Generate Worker environment types:
 
 ```bash
-npm run cf-typegen
+pnpm run cf-typegen
 ```
 
 ## Development
@@ -72,13 +72,13 @@ npm run cf-typegen
 Remote runtime development with Cloudflare:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Local runtime development:
 
 ```bash
-npm run dev:local
+pnpm run dev:local
 ```
 
 ## Testing
@@ -86,13 +86,13 @@ npm run dev:local
 Run the test suite:
 
 ```bash
-npm test
+pnpm test
 ```
 
 Run TypeScript checks:
 
 ```bash
-npm run typecheck
+pnpm run typecheck
 ```
 
 ## Remote Smoke Test
@@ -102,13 +102,13 @@ Real-runtime validation uses `wrangler dev --remote`.
 Confirm the authenticated Cloudflare account:
 
 ```bash
-npx wrangler whoami
+pnpm exec wrangler whoami
 ```
 
 Start the remote dev server on localhost:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Use the actual URL printed by Wrangler if it differs from `http://127.0.0.1:8787`.
@@ -145,7 +145,7 @@ Expected checks:
 Deploy the Worker:
 
 ```bash
-npm run deploy
+pnpm run deploy
 ```
 
 ## Implementation Note
@@ -156,9 +156,9 @@ This Worker does not rely on `edge-tts-universal` at runtime. It performs the vo
 
 Observed remote validation result on 2026-04-10 with `wrangler 4.81.1`:
 
-- `npx wrangler whoami` succeeded
+- `pnpm exec wrangler whoami` succeeded
 - The authenticated Cloudflare account context used for the run was `1f1d1678a2413a54c944b3081bab5c84`
-- `npm run dev` started `wrangler dev --remote`, uploaded a remote preview, and reported `Ready on http://localhost:8787`
+- `pnpm run dev` started `wrangler dev --remote`, uploaded a remote preview, and reported `Ready on http://localhost:8787`
 - `curl -i --max-time 20 http://127.0.0.1:8787/health` returned `200 OK`
 - The `/voices` smoke test returned `200`, produced `/tmp/cloudflare-edge-tts-voices.headers`, and wrote a JSON payload containing `ShortName` entries to `/tmp/cloudflare-edge-tts-voices.json`
 - The `/tts` smoke test returned `200`, produced `/tmp/cloudflare-edge-tts-tts.headers`, and wrote an `audio/mpeg` body to `/tmp/cloudflare-edge-tts-tts.body`
